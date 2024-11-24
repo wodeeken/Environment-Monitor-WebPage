@@ -1,3 +1,16 @@
 extends header.pug 
 block content
     h5 About
+    p This monitor is located in {}. Project details can be found here:
+    br
+    ul.list-group 
+        li.list-group-item 
+            a(href="https://github.com/wodeeken/xiao_nrf52840-Environment-Transmitter")
+                p Air Monitor device details and code
+        li.list-group-item 
+            a(href="https://github.com/wodeeken/xiao_nrf52840-Environment-Host-App")
+                p Host application for reading data from Monitor device via Bluetooth
+        li.list-group-item 
+            a(href="https://github.com/wodeeken/Environment-Monitor-WebPage")
+                p Web application for displaying data in a user-friendly format
+        

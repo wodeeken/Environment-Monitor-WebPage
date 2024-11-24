@@ -7,15 +7,14 @@ const DataFileReader = require('./utils/DataFileReader.js');
 const AudioVisualHelper = require('./utils/AudioVisualHelper.js');
 app.set('view engine', 'pug');
 app.get("/", function (req, res) {
-  res.render('home', {
-  });
+  res.redirect("/home");
 });
 app.get("/home", function (req, res) {
   // Get latest data.
-  var HumidityData = DataFileReader.GetHumidity(5);
-  var AirTempData = DataFileReader.GetTemperature(5);
-  var AirPressureData = DataFileReader.GetAirPressure(5);
-  var EnclosureTempData = DataFileReader.GetEnclosureTemperature(5);
+  var HumidityData = DataFileReader.GetHumidity(5).reverse();
+  var AirTempData = DataFileReader.GetTemperature(5).reverse();
+  var AirPressureData = DataFileReader.GetAirPressure(5).reverse();
+  var EnclosureTempData = DataFileReader.GetEnclosureTemperature(5).reverse();
 
   var images = AudioVisualHelper.GetLatestImages(3);
   var audio = AudioVisualHelper.GetLatestAudio(3);
@@ -33,15 +32,33 @@ app.get("/home", function (req, res) {
   });
 });
 app.get("/images", function (req, res) {
+  var images = AudioVisualHelper.GetLatestImages();
+  images.reverse();
   res.render('images', {
+    Images: images
   });
 });
 app.get("/audio", function (req, res) {
+  var audio = AudioVisualHelper.GetLatestAudio();
+  audio.reverse();
   res.render('audio', {
+    Audio: audio
   });
 });
 app.get("/air_monitor", function (req, res) {
+  var airTemp = DataFileReader.GetTemperature();
+  var humidity = DataFileReader.GetHumidity();
+  var airPressure = DataFileReader.GetAirPressure();
+  var enclosureTemp = DataFileReader.GetEnclosureTemperature();
+  airTemp.reverse();
+  humidity.reverse();
+  airPressure.reverse();
+  enclosureTemp.reverse();
   res.render('air_monitor', {
+    AirTemperature: airTemp,
+    Humidity: humidity,
+    AirPressure: airPressure,
+    EnclosureTemperature: enclosureTemp
   });
 });
 app.get("/about", function (req, res){

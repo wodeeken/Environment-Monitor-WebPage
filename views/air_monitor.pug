@@ -1,3 +1,36 @@
 extends header.pug 
 block content
     h5 Air Monitor History
+        .row 
+            .col 
+                table.table   
+                    tr 
+                        th(colspan=2) Air Temperature
+                    for airTempRow in AirTemperature 
+                        tr 
+                            td= airTempRow.date 
+                            td= airTempRow.value 
+            .col 
+                table.table 
+                    tr 
+                        th(colspan=2) Relative Humidity
+                    for airHumidityRow in Humidity 
+                        tr 
+                            td= airHumidityRow.date 
+                            td= airHumidityRow.value 
+            .col
+                table.table  
+                    tr 
+                        th(colspan=2) Air Pressure
+                    for airPressureRow in AirPressure 
+                        tr 
+                            td= airPressureRow.date 
+                            td= airPressureRow.value 
+            .col 
+                table.table
+                    tr  
+                        th(colspan=2) Enclosure Temperature
+                    for enclosureTempRow in EnclosureTemperature
+                        tr 
+                            td= enclosureTempRow.date 
+                            td= enclosureTempRow.value

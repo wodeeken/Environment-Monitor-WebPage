@@ -1,3 +1,31 @@
 extends header.pug 
 block content
+    script.
+        (function($) {
+            $(document).ready(function() {
+            $(".pop").on("click", function(x,y) {
+                $('#imagepreview').attr('src', x.currentTarget.children[0].src);//attr('src')); // here asign the image to the modal when the user click the enlarge link
+                $("#myModalLabel").html($(x.currentTarget.children[0]).parent().parent().parent().children()[0].innerHTML);
+                
+                $('#imagemodal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
+                
+            });
+        });
+        })(jQuery);        
     h5 Image History
+    table.table 
+        for imageRow in Images 
+            tr 
+                td= imageRow.date 
+                td
+                    a(class="pop")
+                        img(src=imageRow.value, alt="", class="img img-thumbnail" width="200px")
+
+
+    #imagemodal.modal.fade.modal-dialog-scrollable(tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true')
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    h4#myModalLabel.modal-title
+                .modal-body
+                    img.img-fluid#imagepreview(src='')
