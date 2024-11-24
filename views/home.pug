@@ -1,0 +1,70 @@
+extends header.pug 
+block content
+    .row 
+        .col-xl
+            h5 Latest Air Monitor Data (Last 5 Values)
+    .row 
+        .col 
+            p Temperature
+            table.table 
+                each val in AirTemperature ? AirTemperature : [] 
+                    tr 
+                        td= val.date
+                        td= val.value
+        .col 
+            p Relative Humidity 
+            table.table 
+                each val in Humidity ? Humidity : []
+                    tr 
+                        td= val.date 
+                        td= val.value
+        .col 
+            p Pressure 
+            table.table 
+                each val in AirPressure ? AirPressure : []
+                    tr 
+                        td= val.date 
+                        td= val.value
+        .col 
+            p Enclosure Temperature
+            table.table 
+                each val in EnclosureTemperature ? EnclosureTemperature : []
+                    tr 
+                        td= val.date 
+                        td= val.value  
+    hr
+    .row 
+        .col-xl
+            h5 Latest Images (Last 3 Values)
+
+    .row 
+        .col 
+            if Image3 != null
+                p= Image3.date 
+                img(src=Image3.value, alt="", class="img-fluid rounded")
+        .col 
+            if Image2 != null 
+                p= Image2.date
+                img(src=Image2.value, alt="", class="img-fluid rounded")
+        .col 
+            if Image1 != null
+                p= Image1.date 
+                img(src=Image1.value, alt="", class="img-fluid rounded")
+    hr
+    .row 
+        .col-xl     
+            h5 Latest Audio (Last 3 Values)
+    .row   
+        .col 
+            if Audio3 != null 
+                p= Audio3.date
+                audio(controls, src=Audio3.value, type="audio/wav")
+        .col    
+            if Audio2 != null 
+                p= Audio2.date
+                audio(controls, src=Audio2.value, type="audio/wav")
+        .col 
+            if Audio1 != null
+                p= Audio1.date
+                audio(controls, src=Audio1.value, type="audio/wav")
+

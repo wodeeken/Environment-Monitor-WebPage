@@ -1,0 +1,9 @@
+var config = {};
+config.DataRootPath = "/home/will/Desktop/Xiao_EnvironmentalMonitor_Data/"
+config.AirTemperatureFilePath = "AirTemperatureData/Temperature.data";
+config.AirPressureFilePath = "AirPressureData/Pressure.data";
+config.HumidityFilePath = "RelativeHumidityData/Humidity.data";
+config.EnclosureAirTemperatureFilePath = "EnclosureTemperatureData/EnclosureTemp.data";
+config.CameraImageDirectoryPath = "CameraData";
+config.AudioDirectoryPath = "AudioData";
+module.exports = config; 
